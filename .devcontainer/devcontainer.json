@@ -1,0 +1,22 @@
+{
+  "name": "Next.js Blog Dev Environment",
+  // Node.js v20 がプリインストールされた環境を指定します
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+  
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+
+  // 起動時に自動でポート3000番を開けます
+  "forwardPorts": [3000],
+
+  // 環境作成後に自動で `npm install` を実行します
+  "postCreateCommand": "npm install"
+}

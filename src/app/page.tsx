@@ -1,37 +1,24 @@
-import Link from "next/link";
 import { client } from "../../libs/client";
 
-// microCMSの型定義
-// APIスキーマに合わせて型を定義します
-export type Blog = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-  title: string;
-  content: string;
-};
-
-type Props = {
-  blogs: Array<Blog>;
-};
-
 export default async function Home() {
-
-  console.log("Service Domain:", process.env.MICROCMS_SERVICE_DOMAIN);
-  console.log("API Key:", process.env.MICROCMS_API_KEY);
-
-  const data = await client.getList<Blog>({ endpoint: "blog" });
+  // サーバーサイドでの取得に戻します
+  const data = await client.getEntries({ content_type: "blogPost" });
 
   return (
     <div>
-      <h1>ブログ一覧</h1>
+      <h1>ブログ一覧 (Contentful)</h1>
       <ul>
-        {data.contents.map((blog) => (
-          <li key={blog.id}>
-            {/* 詳細ページはまだ作っていないので、一旦トップへのリンクにしています */}
-            <Link href={`/`}>{blog.title}</Link>
+        {data.items.map((item: any) => (
+          <li key={item.sys.id}>{item.fields.title}</li>
+        ))}
+      </ul>
+      <ul>
+        {data.items.map((item: any) => (
+          <li key={item.sys.id}>
+            {/* Linkのhrefを修正 */}
+            <a href={`/posts/${item.fields.slug}`}>
+              {item.fields.title}
+            </a>
           </li>
         ))}
       </ul>
