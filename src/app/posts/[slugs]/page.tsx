@@ -96,6 +96,20 @@ export default async function PostPage({ params }: Props) {
       <h1 className="text-4xl font-extrabold text-white mb-4">
         {post.fields.title}
       </h1>
+
+      {/* タグ表示 */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        {post.fields.tags?.map((tag: any) => (
+          <span key={tag.sys.id} className="bg-cyan-800 text-cyan-200 text-sm font-semibold px-3 py-1 rounded-full">
+            {tag.fields.name}
+          </span>
+        ))}
+      </div>
+
+      <p className="text-gray-400 text-sm mb-8">
+        Published on {new Date(post.fields.publishDate).toLocaleDateString()}
+      </p>
+
       <p className="text-gray-400 text-sm mb-8">
         Published: {new Date(post.sys.createdAt).toLocaleDateString()}
       </p>

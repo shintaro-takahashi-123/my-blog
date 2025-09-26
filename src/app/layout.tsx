@@ -23,7 +23,7 @@ export default function RootLayout({
         <header className="py-6 border-b border-gray-700">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <a href="/" className="text-2xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
-              maedaBlog {/* ブログのロゴまたはタイトル */}
+              maeda-blog {/* ブログのロゴまたはタイトル */}
             </a>
             <nav>
               <ul className="flex space-x-6">
